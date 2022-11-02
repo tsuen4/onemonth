@@ -85,14 +85,14 @@ Nov 30
 
 ```golang
 func main() {
-	month, err := onemonth.New(2022, 1)
+	month, err := during.NewOneMonth(2022, 1)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "error: %s\n", err)
 		os.Exit(1)
 	}
 
 	month.Iterate(func(day time.Time) {
-        // some operation
+		// some operation
 	})
 }
 ```

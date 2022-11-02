@@ -6,7 +6,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/tsuen4/onemonth/pkg/onemonth"
+	"github.com/tsuen4/onemonth/pkg/during"
 )
 
 var (
@@ -41,7 +41,7 @@ func init() {
 func main() {
 	flag.Parse()
 
-	month, err := onemonth.New(year, month)
+	month, err := during.NewOneMonth(year, month)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "error: %s\n", err)
 		os.Exit(1)

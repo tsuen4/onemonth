@@ -1,4 +1,4 @@
-package onemonth
+package during
 
 import (
 	"fmt"
@@ -20,7 +20,7 @@ func TestNew(t *testing.T) {
 	}
 	for _, tc := range testCases {
 		t.Run(fmt.Sprintf("month %d", tc.month), func(t *testing.T) {
-			_, err := New(year, tc.month)
+			_, err := NewOneMonth(year, tc.month)
 			if tc.isError {
 				if err == nil {
 					t.Error("no error occurred")
@@ -36,17 +36,20 @@ func TestNew(t *testing.T) {
 
 func TestSameMonth(t *testing.T) {
 	for i := 1; i <= 12; i++ {
-		month, err := New(year, i)
+		month, err := NewOneMonth(year, i)
 		if err != nil {
 			t.Errorf("failed to New, args: %d, %d", year, i)
 		}
 
-		if int(month.Month()) != i {
-			t.Errorf("month.Month() and %d are not equal\n\tmonth.Month(): %d", i, month.Month())
+		if int(month.BeginMonth()) != i {
+			t.Errorf("month.BeginMonth() and %d are not equal\n\tmonth.BeginMonth(): %d", i, month.BeginMonth())
 		}
-		if month.BeginDay.Month() != month.EndDay.Month() {
-			t.Errorf("BeginDay.Month() and EndDay.Month() are not equal\n\tBeginDay.Month(): %d\n\tEndDay.Month(): %d",
-				month.BeginDay.Month(), month.EndDay.Month(),
+		if int(month.EndMonth()) != i {
+			t.Errorf("month.EndMonth() and %d are not equal\n\tmonth.EndMonth(): %d", i, month.EndMonth())
+		}
+		if month.BeginMonth() != month.EndMonth() {
+			t.Errorf("month.BeginMonth() and month.EndMonth() are not equal\n\tmonth.BeginMonth(): %d\n\tmonth.EndMonth(): %d",
+				month.BeginMonth(), month.EndMonth(),
 			)
 		}
 	}
@@ -68,7 +71,7 @@ func TestIterateCount(t *testing.T) {
 
 	for _, year := range testYear {
 		for i := 1; i <= 12; i++ {
-			month, err := New(year, i)
+			month, err := NewOneMonth(year, i)
 			if err != nil {
 				t.Errorf("failed to New, args: %d, %d", year, i)
 			}
