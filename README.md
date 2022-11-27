@@ -2,6 +2,16 @@
 
 A program that iterate the day of the month. I created it to generate the date text for the diary I am generating every month.
 
+- [onemonth](#onemonth)
+  - [Installation](#installation)
+  - [Usage](#usage)
+    - [Output the date of the current month](#output-the-date-of-the-current-month)
+    - [Output the date of the specified month](#output-the-date-of-the-specified-month)
+    - [Output the date of the current month of the specified year](#output-the-date-of-the-current-month-of-the-specified-year)
+    - [Specify output format](#specify-output-format)
+  - [Load configuration file](#load-configuration-file)
+  - [Sample code](#sample-code)
+
 ## Installation
 
 ```sh
@@ -16,11 +26,11 @@ go install github.com/tsuen4/onemonth@latest
 onemonth
 ```
 
-#### Output:
+Output:
 
 Partially omitted.
 
-```
+```txt
 2022/11/01: 
 2022/11/02: 
 2022/11/03: 
@@ -34,7 +44,7 @@ Partially omitted.
 2022/11/30: 
 ```
 
-### Output the date of the specified month:
+### Output the date of the specified month
 
 ```sh
 onemonth -month 1
@@ -42,7 +52,7 @@ onemonth -month 1
 onemonth -m 1
 ```
 
-### Output the date of the current month of the specified year:
+### Output the date of the current month of the specified year
 
 ```sh
 onemonth -year 2023
@@ -50,12 +60,11 @@ onemonth -year 2023
 onemonth -y 2023
 ```
 
-### Specify output format:
-
+### Specify output format
 
 Conform to Golang time format.
 
-see: https://pkg.go.dev/time#pkg-constants
+see: <https://pkg.go.dev/time#pkg-constants>
 
 ```sh
 onemonth -layout 'Jan _2'
@@ -63,11 +72,11 @@ onemonth -layout 'Jan _2'
 onemonth -l 'Jan _2'
 ```
 
-#### Output: 
+Output:
 
 Partially omitted.
 
-```
+```txt
 Nov  1
 Nov  2
 Nov  3
@@ -80,6 +89,20 @@ Nov 28
 Nov 29
 Nov 30
 ```
+
+## Load configuration file
+
+Read the following files saved in `$HOME/.config/onemonth` directory.
+Read only the first line.
+
+- `layout.time`:
+  - [Specify output format](#specify-output-format)
+- `layout.output`:
+  - Example when you want to insert two line breaks for each month:
+
+    ```txt
+    %s\n\n
+    ```
 
 ## Sample code
 
