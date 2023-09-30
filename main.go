@@ -36,7 +36,7 @@ func init() {
 
 	var (
 		usageTimeLayout   = "string of time format layout."
-		defaultTimeLayout = "2006/01/02: "
+		defaultTimeLayout = time.DateOnly
 	)
 	flag.StringVar(&timeLayout, "layout", defaultTimeLayout, usageTimeLayout)
 	flag.StringVar(&timeLayout, "l", defaultTimeLayout, usageTimeLayout+" (shorthand)")
